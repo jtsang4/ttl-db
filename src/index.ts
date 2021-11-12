@@ -19,7 +19,7 @@ export function set(
   if (typeof options?.ttl === 'number') {
     return idb.set(key, {
       value,
-      [TTL_DB_STORE_KEY]: Date.now() + options.ttl,
+      [TTL_DB_STORE_KEY]: Date.now() + options.ttl * 1000,
     });
   }
   return idb.set(key, { value });
@@ -48,7 +48,7 @@ export function setMany(entries: SetManyEntries[]): Promise<void> {
   return idb.setMany(
     entries.map(([key, value, options]) => {
       if (typeof options?.ttl === 'number') {
-        return [key, { value, [TTL_DB_STORE_KEY]: Date.now() + options.ttl }];
+        return [key, { value, [TTL_DB_STORE_KEY]: Date.now() + options.ttl * 1000 }];
       }
       return [key, { value }];
     }),
@@ -100,7 +100,7 @@ export function update<T = any>(
     return {
       value: nextValue,
       [TTL_DB_STORE_KEY]:
-        typeof options?.ttl === 'number' ? Date.now() + options.ttl : undefined,
+        typeof options?.ttl === 'number' ? Date.now() + options.ttl * 1000 : undefined,
     };
   });
 }
