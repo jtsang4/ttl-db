@@ -18,7 +18,7 @@
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
-  "repository": "https://github.com/wtzeng1/ttl-db",
+  "repository": "https://github.com/jtsang4/ttl-db",
   "files": ["src", "dist"],
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
